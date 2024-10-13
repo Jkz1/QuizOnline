@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import axios from "axios";
 import { apiNode } from "./utils/url";
+import Quiz from "./pages/test";
 
 function App() {
   const [data, setData] = useState("");
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <>
-      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+      {/* <div className="d-flex flex-column justify-content-center align-items-center mt-5">
         <button className="btn btn-success" onClick={getData}>check data</button>
         {data && data.map((item, index) => (
           <div key={index} className="card mt-3" style={{ width: "18rem" }}>
@@ -34,7 +35,8 @@ function App() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
+      <Quiz></Quiz>
     </>
   );
 }

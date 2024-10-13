@@ -1,0 +1,60 @@
+
+
+body{
+    height: 100vh;
+    background-image: linear-gradient(#E85C0D, #000000);
+}
+.container{
+    width: 600px;
+    margin: auto;
+    margin-top: 150px;
+    background: white;
+    color: rgb(177, 101, 8);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 30px;
+    padding: 40px 50px;
+}
+.container hr{
+    height: 3px;
+    background: #707070
+}
+.container h2{
+    font-size: 25px;
+}
+.container ul li{
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding-left: 15px;
+    border: 1px solid #686868;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.container button{
+    margin: auto;
+    width: 250px;
+    height: 65px;
+    background: orange;
+    color: black;
+    font-size: 25px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.container .soal{
+    margin: auto;
+    font-size: 18px;
+}
+.container .Benar{
+    background: #99e88d;
+    border-color: #00d397;
+    color: #0c76bd;
+}
+.container .Salah{
+    background: #ffebeb;
+    border-color: #ff4a4a;
+}
