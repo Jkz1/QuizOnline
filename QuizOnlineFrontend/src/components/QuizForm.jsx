@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const QuizForm = () => {
   const [quizTitle, setQuizTitle] = useState("");
-  const [questions, setQuestions] = useState([{ question: "", options: ["", "", "", ""], correctAnswer: "" }]);
+  const [questions, setQuestions] = useState([{ question: "", options: [""], correctAnswer: "" }]);
 
   const handleQuizTitleChange = (e) => {
     setQuizTitle(e.target.value);
@@ -21,7 +21,19 @@ const QuizForm = () => {
   };
 
   const addNewQuestion = () => {
-    setQuestions([...questions, { question: "", options: ["", "", "", ""], correctAnswer: "" }]);
+    setQuestions([...questions, { question: "", options: [""], correctAnswer: "" }]);
+  };
+
+  const addNewOption = (qIndex) => {
+    const newQuestions = [...questions];
+    newQuestions[qIndex].options.push("");
+    setQuestions(newQuestions);
+  };
+
+  const removeOption = (qIndex, optionIndex) => {
+    const newQuestions = [...questions];
+    newQuestions[qIndex].options.splice(optionIndex, 1);
+    setQuestions(newQuestions);
   };
 
   const handleSubmit = (e) => {
@@ -57,22 +69,33 @@ const QuizForm = () => {
           {q.options.map((option, optionIndex) => (
             <div key={optionIndex} className="mb-2">
               <label>Option {optionIndex + 1}:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={option}
-                onChange={(e) => handleOptionChange(qIndex, optionIndex, e.target.value)}
-                required
-              />
+              <div className="d-flex flex-row align-items-center jusify-content-center">
+
+                <input
+                  type="text"
+                  className="form-control"
+                  value={option}
+                  onChange={(e) => handleOptionChange(qIndex, optionIndex, e.target.value)}
+                  required
+                  />
+                <button type="button" className="btn btn-danger m-0" onClick={() => removeOption(qIndex, optionIndex)}>
+                  X
+                </button>
+                </div>
             </div>
           ))}
+          <button type="button" className="btn btn-secondary" onClick={() => addNewOption(qIndex)}>
+            Add New Option
+          </button>
         </div>
       ))}
 
-      <button type="button" className="btn btn-primary mb-3" onClick={addNewQuestion}>
-        Add New Question
-      </button>
-      <button type="submit" className="btn btn-success">Submit Quiz</button>
+      <div className="d-flex flex-row justify-content-center align-items-center">
+        <button type="button" className="btn btn-primary me-5" onClick={addNewQuestion}>
+          Add New Question
+        </button>
+        <button type="submit" className="btn btn-success">Submit Quiz</button>
+      </div>
     </form>
   );
 };
