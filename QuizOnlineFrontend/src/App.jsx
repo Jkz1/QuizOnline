@@ -36,7 +36,10 @@ function App() {
           </div>
         ))}
       </div> */}
-      <Quiz></Quiz>
+      
+      <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'linear-gradient(orange, black)' }}>
+      <Quiz/>
+        </div>
     </>
   );
 }
