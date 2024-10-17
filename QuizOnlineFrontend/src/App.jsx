@@ -7,6 +7,7 @@ import SearchPage from "./pages/search";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import Quiz from "./pages/test";
 
 function App() {
   const [data, setData] = useState("");
