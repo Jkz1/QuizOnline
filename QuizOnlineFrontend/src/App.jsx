@@ -7,7 +7,7 @@ import SearchPage from "./pages/search";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Quiz from "./pages/test";
+import Quiz from "./pages/quiz";
 import React from "react";
 import QuizForm from "./components/QuizForm";
 import QuizList from "./components/QuizList"; // Komponen untuk menampilkan soal
@@ -21,6 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/makeQuiz" element={<QuizForm />} />
+            <Route path="/doQuiz/:id" element={<Quiz />} />
           </Routes>
         </div>
       </Router>

@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
-const bankSoalRouter = require("./routes/BankSoal");
+const bankSoalRouter = require("./routes/bankSoal");
+const quizRouter = require("./routes/quiz");
 const quizModel = require("./models/quizModel");
 const bankSoalModel = require('./models/bankSoalModel');
 
@@ -74,8 +75,14 @@ const initialData = () => {
         jawaban : "Ya"
       })
 
-      Promise.all([soal1.save(), soal2.save(), soal3.save()]).then(() => {
-        console.log("Success initial soal data");
+      Promise.all([soal1.save(), soal2.save(), soal3.save()]).then((res) => {
+        const quiz = new quizModel({
+          namaQuiz: "Quiz Percobaan",
+          daftarSoal: res.map((item) => item._id),
+        })
+        quiz.save()
+        console.log("Complete initial data");
+
       })
       ;
     }
@@ -85,3 +92,4 @@ const initialData = () => {
 
 //route
 app.use("/bankSoal", bankSoalRouter);
+app.use("/quiz", quizRouter);
