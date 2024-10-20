@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { shuffle } from "../utils/funct";
 import { apiNode } from "../utils/url";
 import axios from "axios";
+import { FaTruckLoading } from "react-icons/fa";
 
 const Quiz = () => {
     const { id } = useParams();
@@ -19,7 +20,6 @@ const Quiz = () => {
     let completeButtonRef = useRef();
 
     useEffect(() => {
-        console.log("test");
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${apiNode}/quiz/getQuiz/${id}`);
@@ -32,7 +32,16 @@ const Quiz = () => {
                 setData(result);
                 setQuestion(result[0]);
             } catch (error) {
-                console.error("Error fetching quiz data:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "Quiz tidak ditemukan atau terjadi kesalahan pada server",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(() => {
+                    window.location.href = "/";
+                });
+                // console.error("Error fetching quiz data:", error);
             }
         };
 
@@ -70,10 +79,7 @@ const Quiz = () => {
                     if (result.isConfirmed) {
                         window.location.reload();
                     } else {
-                        Swal.fire({
-                            title: "Back to Home",
-                            icon: "success",
-                        });
+                        window.location.href = "/";
                     }
                 });
             } else if (index === data.length - 2) {
@@ -104,7 +110,13 @@ const Quiz = () => {
     };
 
     if (!question) {
-        return <div>Loading...</div>;
+        return <>
+            <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+                <FaTruckLoading size={100} className="mb-4" />
+                <h1 >404</h1>
+                <h1 >Page Not Found</h1>
+            </div>
+        </>
     }
 
     return (

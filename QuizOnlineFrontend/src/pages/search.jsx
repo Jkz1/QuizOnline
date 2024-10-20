@@ -2,13 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { apiNode } from "../utils/url";
 import { useNavigate } from "react-router-dom";
+import QuizListCard from "../components/quizListcard";
 
 function SearchPage() {
 
     const [keyword, setKeyword] = useState()
 
     const handleSearch = () => {
-        console.log(keyword)
+        alert("Coming Soon")
     }
 
     const [Quiz, setQuiz] = useState([])
@@ -37,24 +38,12 @@ function SearchPage() {
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                 />
-                <button className="btn btn-primary" onClick={handleSearch}>
+                <button className="btn m-0 rounded btn-primary" onClick={handleSearch}>
                     Search
                 </button>
             </div>
             {Quiz.map((quiz) => (
-                <div key={quiz._id} className="card w-100 mb-3">
-                    <div className="card-body">
-                        <h5 className="card-title">{quiz.namaQuiz}</h5>
-                        <div className="d-flex justify-content-end">
-                            <button 
-                                className="btn btn-success me-2" 
-                                onClick={() => navigate(`/doQuiz/${quiz._id}`)}
-                            >
-                                Do this quiz
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <QuizListCard key={quiz._id} quiz={quiz} />
             ))}
         </div>
     )
